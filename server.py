@@ -127,11 +127,6 @@ def index():
 		names.append(result[0])
 	cursor.close()
 
-	from sqlalchemy import text
-
-
-
-	
 	#
 	# Flask uses Jinja templates, which is an extension to HTML where you can
 	# pass data to a template and dynamically generate HTML based on the data
