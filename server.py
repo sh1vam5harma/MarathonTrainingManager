@@ -129,17 +129,7 @@ def index():
 
 	from sqlalchemy import text
 
-# Define the SELECT query
-	select_query = text("SELECT PROGRAM_NAME FROM training_program")
 
-# Execute the query
-	result = db.engine.execute(select_query)
-
-# Extract the program names from the result
-	program_names = [row[0] for row in result]
-
-# Close the cursor
-	result.close()
 
 	
 	#
