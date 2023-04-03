@@ -124,6 +124,7 @@ def index():
 	# example of a database query
 	#
         name = request.form['name']
+
         select_query = "SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = :name AND reg.completed = 'Y'"
         cursor = g.conn.execute(text(select_query))
         names =[]
