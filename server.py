@@ -198,7 +198,7 @@ def raceresults():
     stmt = stmt.bindparams(name=name)
     cursor = g.conn.execute(stmt)
     names = []
-    names.append("Last Name","First Name", "Time"
+    names.append("Last Name","First Name", "Time")
     for result in cursor:
         names.append(result)
     cursor.close()
