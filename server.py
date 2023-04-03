@@ -123,13 +123,13 @@ def index():
 	#
 	# example of a database query
 	#
-	select_query = "SELECT name from test"
-	cursor = g.conn.execute(text(select_query))
-	names = []
-	for result in cursor:
-		names.append(result[0])
-	cursor.close()
-
+        name = request.form['name']
+        select_query = "SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = :name AND reg.completed = 'Y'"
+        cursor = g.conn.execute(text(select_query))
+        names =[]
+        for result in cursor:
+            names.append(result)
+        cursor.colse()
 	#
 	# Flask uses Jinja templates, which is an extension to HTML where you can
 	# pass data to a template and dynamically generate HTML based on the data
