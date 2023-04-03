@@ -175,7 +175,7 @@ def index():
 #
 @app.route('/another')
 def another():
-	#return render_template("another.html")
+	return render_template("another.html")
 
 
 # Example of adding new data to the database
