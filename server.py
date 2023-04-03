@@ -200,9 +200,9 @@ def raceresults():
     for result in cursor:
         data.append(result)
     cursor.close()
-    #context = dict(data = names)
+    context = dict(data = names)
 
-    return render_template("index.html", data=data)
+    return render_template("index.html", context**)
 
 # Establish a connection to the database
 conn = psycopg2.connect(DATABASEURI)
