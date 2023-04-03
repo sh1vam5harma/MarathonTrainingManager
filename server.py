@@ -194,7 +194,7 @@ def add():
 def index():
 
 # Establish a connection to the database
-conn = psycopg2.connect(DATABASEURI)
+#conn = psycopg2.connect(DATABASEURI)
 
 # Create a cursor object
 cursor = conn.cursor()
