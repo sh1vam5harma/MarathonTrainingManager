@@ -175,7 +175,15 @@ def index():
 #
 @app.route('/another')
 def another():
-	return render_template("another.html")
+    print(request.args)
+    select_query = "SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = 'nyc_marathon' AND reg.completed = 'Y'"
+    cursor = g.conn.execute(text(select_query))
+    names = []
+    for result in cursor:
+        names.append(result)
+    cursor.close()
+    context = dict(data = names)
+    return render_template("another.html", context**)
 
 
 # Example of adding new data to the database
