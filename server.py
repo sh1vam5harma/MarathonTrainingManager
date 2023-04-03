@@ -221,7 +221,7 @@ cursor.execute("""
 results = cursor.fetchall()
 conn.close()
 
-return render_template('index.html', results=results)
+	return render_template('index.html', results=results)
 
 
 @app.route('/login')
