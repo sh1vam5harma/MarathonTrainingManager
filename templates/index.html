@@ -1,70 +1,23 @@
 <html>
-  <head>
-
- 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="icon" href="data:,">
-
-<style>
-
-
-h1, p {
-text-align: center;
-}
-
-table, td, th {
-border: 2px solid #ddd;
-    text-align: left;
-}
-
-table {
-    border-collapse: collapse;
-    width: 60%;
-}
-
-th, td {
-    padding: 6px;
-}
-
-</style>
-
+<head>
+    <title>Race Results</title>
 </head>
-
 <body>
-  <h1>Running App by Isaiah and Shivam</h1>
-<!--  <div>{{data}}</div> -->
-<h1>Race Results<h1>
-<form method="POST" action="/">
-<!--
-<p>Search for results by race name: <input type="text" name="name"> <input type="submit" value="Search"></p>
--->
-
-<label for="race_name">Enter the race name:</label>
-        <input type="text" id="race_name" name="name">
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
-    <br>
+    <h1>Race Results</h1>
     <table>
-        {% for row in data %}
         <tr>
-            {% for item in row %}
-            <td>{{ item }}</td>
-            {% endfor %}
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Elapsed Time</th>
+        </tr>
+        {% for row in results %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
         </tr>
         {% endfor %}
     </table>
-
-
-<table align =  "center" >
-
-
-</table>
-<p><a href="another">Go to Another Page</a></p>
-<p><a href="refresh">Refresh Page</a></p>
-
-
 </body>
-
-
 </html>
+
