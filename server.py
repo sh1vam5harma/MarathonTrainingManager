@@ -193,7 +193,7 @@ def add():
 
 
 
-cursor = conn.cursor()
+psycopg2.extensions.cursor()
 
 cursor.execute("""
     SELECT r.last_name, r.first_name, reg.finish_time - reg.start_time AS elapsed_time
