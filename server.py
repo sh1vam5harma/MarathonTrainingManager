@@ -202,7 +202,7 @@ def raceresults():
     cursor.close()
     context = dict(data = names)
 
-    return render_template("index.html", context**)
+    return render_template("index.html", **context)
 
 # Establish a connection to the database
 conn = psycopg2.connect(DATABASEURI)
