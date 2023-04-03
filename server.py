@@ -191,7 +191,6 @@ def add():
 	g.conn.commit()
 	return redirect('/')
 
-<<<<<<< HEAD
 @app.route('/raceresults', methods=['POST'])
 def raceresults():
     race_name = request.form['name']
