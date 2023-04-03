@@ -163,7 +163,7 @@ def index():
 	# render_template looks in the templates/ folder for files.
 	# for example, the below file reads template/index.html
 	#
-	return render_template("index.html", **context)
+	#return render_template("index.html", **context)
 
 #
 # This is an example of a different path.  You can see it at:
@@ -175,7 +175,7 @@ def index():
 #
 @app.route('/another')
 def another():
-	return render_template("another.html")
+	#return render_template("another.html")
 
 
 # Example of adding new data to the database
