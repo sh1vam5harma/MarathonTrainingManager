@@ -33,27 +33,28 @@ th, td {
 <body>
   <h1>Running App by Isaiah and Shivam</h1>
 <!--  <div>{{data}}</div> -->
+<h1>Race Results<h1>
 <form method="POST" action="/raceresults">
-
+<!--
 <p>Search for results by race name: <input type="text" name="name"> <input type="submit" value="Search"></p>
+-->
 
-</form>
-{% if data %}
-  <table>
-    <tr>
-      <th>Last Name</th>
-      <th>First Name</th>
-      <th>Time</th>
-    </tr>
-    {% for row in data %}
-      <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
-      </tr>
-    {% endfor %}
-  </table>
-{% endif %}
+<label for="race_name">Enter the race name:</label>
+        <input type="text" id="race_name" name="name">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <table>
+        {% for row in data %}
+        <tr>
+            {% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
 
 <table align =  "center" >
 
