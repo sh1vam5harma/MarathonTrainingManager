@@ -1,3 +1,4 @@
+<!--
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -49,4 +50,31 @@
     <p><a href="another">Go to Another Page</a></p>
     <p><a href="refresh">Refresh Page</a></p>
   </body>
+</html>
+-->
+<html>
+<head>
+  <title>NYC Marathon Results</title>
+</head>
+<body>
+  <h1>NYC Marathon Results</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Elapsed Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for result in data %}
+      <tr>
+        <td>{{ result[0] }}</td>
+        <td>{{ result[1] }}</td>
+        <td>{{ result[2] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
 </html>
