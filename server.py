@@ -218,10 +218,12 @@ cursor.execute("""
     WHERE ra.race_id = '1' AND reg.completed = 'Y'
 """)
 
+
 results = cursor.fetchall()
+return render_template('index.html', results=results)
+
 conn.close()
 
-return render_template('index.html', results=results)
 
 
 @app.route('/login')
