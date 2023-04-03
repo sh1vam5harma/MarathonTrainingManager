@@ -219,9 +219,9 @@ cursor.execute("""
 """)
 
 results = cursor.fetchall()
-for row in results:
-    print(f"Last Name: {row[0]}, First Name: {row[1]}, Elapsed Time: {row[2]}")
 conn.close()
+
+return render_template('index.html', results=results)
 
 
 @app.route('/login')
