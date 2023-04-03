@@ -118,8 +118,6 @@ def index():
 
 	# DEBUG: this is debugging code to see what request looks like
         print(request.args)
-
-
 	#
 	# example of a database query
 	#
