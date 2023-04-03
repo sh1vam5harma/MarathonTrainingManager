@@ -14,6 +14,7 @@ import os
 from sqlalchemy import *
 from sqlalchemy.pool import NullPool
 from flask import Flask, request, render_template, g, redirect, Response
+import psycopg2
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
@@ -35,6 +36,8 @@ DATABASE_USERNAME = "ss6454"
 DATABASE_PASSWRD = "5575"
 DATABASE_HOST = "34.148.107.47" # change to 34.28.53.86 if you used database 2 for part 2
 DATABASEURI = f"postgresql://ss6454:5575@34.148.107.47/project1"
+
+
 
 
 #
@@ -188,6 +191,7 @@ def add():
 	g.conn.commit()
 	return redirect('/')
 
+<<<<<<< HEAD
 @app.route('/raceresults', methods=['POST'])
 def raceresults():
     race_name = request.form['name']
@@ -199,6 +203,29 @@ def raceresults():
     context = dict(data = names)
 
     return render_template("index.html", **context)
+=======
+# Establish a connection to the database
+conn = psycopg2.connect(DATABASEURI)
+
+# Create a cursor object
+cursor = conn.cursor()
+
+
+cursor.execute("""
+    SELECT r.last_name, r.first_name, reg.finish_time - reg.start_time AS elapsed_time
+    FROM runner r
+    JOIN registration reg ON r.runner_id = reg.runner_id
+    JOIN race ra ON ra.race_id = reg.race_id
+    WHERE ra.race_id = '1' AND reg.completed = 'Y'
+""")
+
+results = cursor.fetchall()
+for row in results:
+    print(f"Last Name: {row[0]}, First Name: {row[1]}, Elapsed Time: {row[2]}")
+conn.close()
+
+
+>>>>>>> 57d252c032695e5683bfd622afc32125697a9bbf
 
 @app.route('/login')
 def login():
