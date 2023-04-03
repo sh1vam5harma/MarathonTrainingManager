@@ -191,9 +191,12 @@ def add():
 	g.conn.commit()
 	return redirect('/')
 
+# Establish a connection to the database
+conn = psycopg2.connect(DATABASEURI)
 
+# Create a cursor object
+cursor = conn.cursor()
 
-psycopg2.extensions.cursor()
 
 cursor.execute("""
     SELECT r.last_name, r.first_name, reg.finish_time - reg.start_time AS elapsed_time
