@@ -38,7 +38,22 @@ th, td {
 <p>Search for results by race name: <input type="text" name="name"> <input type="submit" value="Search"></p>
 
 </form>
-
+{% if data %}
+  <table>
+    <tr>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Time</th>
+    </tr>
+    {% for row in data %}
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endif %}
 
 <table align =  "center" >
 

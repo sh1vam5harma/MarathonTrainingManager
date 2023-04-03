@@ -195,13 +195,14 @@ def add():
 def raceresults():
     name = request.form['name']
     cursor = g.conn.execute(text("SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = :name AND reg.completed = 'Y'"))
-    names = [["Last Name","First Name", "Time"]]
+    #names = [["Last Name","First Name", "Time"]]
+    data = []
     for result in cursor:
-        names.append(result)
+        data.append(result)
     cursor.close()
     context = dict(data = names)
 
-    return render_template("index.html", **context)
+    return render_template("index.html", data=data)
 
 # Establish a connection to the database
 conn = psycopg2.connect(DATABASEURI)
