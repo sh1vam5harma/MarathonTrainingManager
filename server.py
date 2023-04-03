@@ -194,25 +194,25 @@ def add():
 def index():
 
 # Establish a connection to the database
-#conn = psycopg2.connect(DATABASEURI)
+	conn = psycopg2.connect(DATABASEURI)
 
 # Create a cursor object
-cursor = conn.cursor()
+	cursor = conn.cursor()
 
 
-cursor.execute("""
-    SELECT r.last_name, r.first_name, reg.finish_time - reg.start_time AS elapsed_time
-    FROM runner r
-    JOIN registration reg ON r.runner_id = reg.runner_id
-    JOIN race ra ON ra.race_id = reg.race_id
-    WHERE ra.race_id = '1' AND reg.completed = 'Y'
-""")
+	cursor.execute("""
+	    SELECT r.last_name, r.first_name, reg.finish_time - reg.start_time AS elapsed_time
+	    FROM runner r
+	    JOIN registration reg ON r.runner_id = reg.runner_id
+	    JOIN race ra ON ra.race_id = reg.race_id
+	    WHERE ra.race_id = '1' AND reg.completed = 'Y'
+	""")
 
 
-results = cursor.fetchall()
+	results = cursor.fetchall()
 
-conn.close()
-return render_template('index.html', results=results)
+	conn.close()
+	return render_template('index.html', results=results)
 
 
 
