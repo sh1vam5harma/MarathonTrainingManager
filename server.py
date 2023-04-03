@@ -192,12 +192,7 @@ def add():
 	return redirect('/')
 
 
-conn = psycopg2.connect(
-DATABASE_USERNAME = "ss6454"
-#DATABASE_PASSWRD = "5575"
-#DATABASE_HOST = "34.148.107.47"
-#DATABASE_NAME = "project1"
-)
+
 cursor = conn.cursor()
 
 cursor.execute("""
