@@ -200,7 +200,7 @@ def raceresults():
     for result in cursor:
         data.append(result)
     cursor.close()
-    context = dict(data = names)
+    #context = dict(data = names)
 
     return render_template("index.html", data=data)
 
