@@ -117,17 +117,19 @@ def index():
 	"""
 
 	# DEBUG: this is debugging code to see what request looks like
-        #print(request.args)
+	print(request.args)
+
+
 	#
 	# example of a database query
 	#
-        
-        select_query = "SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = nyc_marathon AND reg.completed = 'Y'"
-        cursor = g.conn.execute(text(select_query))
-        names =[]
-        for result in cursor:
-            names.append(result)
-        cursor.close()
+	select_query = "SELECT name from test"
+	cursor = g.conn.execute(text(select_query))
+	names = []
+	for result in cursor:
+		names.append(result[0])
+	cursor.close()
+
 	#
 	# Flask uses Jinja templates, which is an extension to HTML where you can
 	# pass data to a template and dynamically generate HTML based on the data
@@ -154,12 +156,15 @@ def index():
 	#     <div>{{n}}</div>
 	#     {% endfor %}
 	#
-        context = dict(data = names)
+	context = dict(data = names)
+
+
 	#
 	# render_template looks in the templates/ folder for files.
 	# for example, the below file reads template/index.html
 	#
-        return render_template("index.html", **context)
+	return render_template("index.html", **context)
+
 #
 # This is an example of a different path.  You can see it at:
 # 
@@ -189,7 +194,7 @@ def add():
 @app.route('/raceresults', methods=['POST'])
 def raceresults():
     name = request.form['name']
-    cursor = g.conn.execute(text("SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = :name_of_race AND reg.completed = 'Y'"), name_of_race =name)
+    cursor = g.conn.execute(text("SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = :name AND reg.completed = 'Y'"), name =name)
     names = [["Last Name","First Name", "Time"]]
     for result in cursor:
         names.append(result)
