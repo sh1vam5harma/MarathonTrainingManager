@@ -1,27 +1,51 @@
 <html>
-  <style>
-    body{ 
-      font-size: 15pt;
-      font-family: arial;
-    }
-  </style>
+  <head>
 
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+
+
+h1, p {
+text-align: center;
+}
+
+table, td, th {
+border: 2px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 60%;
+}
+
+th, td {
+    padding: 6px;
+}
+
+</style>
+
+</head>
 
 <body>
-  <h1>Some famous Computer Scientists</h1>
-  <div>{{data}}</div>
+  <h1>Running App by Isaiah and Shivam</h1>
+<!--  <div>{{data}}</div> -->
+<form method="POST" action="/raceresults">
 
-  <div>
-    {% for n in data %}
-    <div>{{n}}</div>
-    {% endfor %}
-  </div>
+<p>Search for results by race name: <input type="text" name="name"> <input type="submit" value="Search"></p>
 
-<p><a href="another">Go to the other page</a></p>
-
-<form method="POST" action="/add">
-<p>Name of new computer scientist: <input type="text" name="name"> <input type="submit" value="Add"></p>
 </form>
+
+
+<table align =  "center" >
+
+
+</table>
+<p><a href="another">Go to Another Page</a></p>
+<p><a href="refresh">Refresh Page</a></p>
+
 
 </body>
 
