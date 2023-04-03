@@ -202,7 +202,7 @@ def raceresults():
     context = dict(data = names)
 
     return render_template("index.html", **context)
-=======
+
 # Establish a connection to the database
 conn = psycopg2.connect(DATABASEURI)
 
@@ -223,8 +223,6 @@ for row in results:
     print(f"Last Name: {row[0]}, First Name: {row[1]}, Elapsed Time: {row[2]}")
 conn.close()
 
-
->>>>>>> 57d252c032695e5683bfd622afc32125697a9bbf
 
 @app.route('/login')
 def login():
