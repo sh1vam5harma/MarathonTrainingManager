@@ -1,1 +1,27 @@
+<html>
+<head>
+  <title>NYC Marathon Results</title>
+</head>
+<body>
+  <h1>NYC Marathon Results</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Elapsed Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for result in data %}
+      <tr>
+        <td>{{ result[0] }}</td>
+        <td>{{ result[1] }}</td>
+        <td>{{ result[2] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
 hello, I am another file!
