@@ -193,8 +193,8 @@ def add():
 
 @app.route('/raceresults', methods=['POST'])
 def raceresults():
-    race_name = request.form['name']
-    cursor = g.conn.execute(text("SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_id = :race_name AND reg.completed = 'Y'"))
+    name = request.form['name']
+    cursor = g.conn.execute(text("SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = :name AND reg.completed = 'Y'"))
     names = [["Last Name","First Name", "Time"]]
     for result in cursor:
         names.append(result)
