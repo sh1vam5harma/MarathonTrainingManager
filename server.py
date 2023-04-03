@@ -183,7 +183,7 @@ def another():
         names.append(result)
     cursor.close()
     context = dict(data = names)
-    return render_template("another.html", context**)
+    return render_template("another.html", **context)
 
 
 # Example of adding new data to the database
