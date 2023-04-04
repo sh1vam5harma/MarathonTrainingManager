@@ -221,11 +221,11 @@ def log_training_event():
         # Insert the new training event into the training_event table
         
 
-        g.conn.execute("INSERT INTO training_event (training_type, date, start_time, finish_time, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", [(training_type, date, start_time, finish_time, miles, event_id)])
+        g.conn.execute("INSERT INTO training_event (training_type, date, start_time, finish_time, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", training_type, date, start_time, finish_time, miles, event_id)
         conn.commit()
 
         # Insert the new log entry into the log table
-        g.conn.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", [(runner_id, event_id)])
+        g.conn.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", runner_id, event_id)
         conn.commit()
         cursor.close()
         conn.close()
