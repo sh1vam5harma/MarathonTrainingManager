@@ -225,6 +225,26 @@ def index():
 
 
 
+@app.route('/runner_name', methods=['GET'])
+def get_runner_name():
+    runner_id = request.args.get('runner_id')
+    if not runner_id:
+        return "Runner ID not specified.", 400
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT RUNNER_NAME FROM RUNNER WHERE RUNNER_ID=?", (runner_id,))
+    result = cursor.fetchone()
+    if not result:
+        return "Runner not found.", 404
+    runner_name = result[0]
+
+    return f"Runner name: {runner_name}"
+
+
+
+
+
 @app.route('/login')
 def login():
 	abort(401)
