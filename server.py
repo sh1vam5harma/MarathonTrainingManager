@@ -220,7 +220,6 @@ def log_training_event():
 
         # Insert the new training event into the training_event table
         
-
         g.conn.execute(text("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)"), (training_type, date, start, finish, miles, event_id))
         conn.commit()
 
