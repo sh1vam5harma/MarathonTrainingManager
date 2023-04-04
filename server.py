@@ -205,6 +205,7 @@ def add():
 
 @app.route('/log_training_event', methods=['GET', 'POST'])
 def log_training_event():
+    cur = conn.cursor()
     if request.method == 'POST':
         # Get user input from the form
         training_type = request.form['training_type']
@@ -224,10 +225,11 @@ def log_training_event():
         # Insert the new log entry into the log table
         cur.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
         conn.commit()
-
+        cursor.close()
         return "Training event added successfully!"
 
     else:
+        cursor.close()
         return '''
         <form method="post">
             Training type: <input type="text" name="training_type"><br>
