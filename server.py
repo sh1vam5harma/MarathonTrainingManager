@@ -205,7 +205,7 @@ def add():
 
 @app.route('/log_training_event', methods=['GET', 'POST'])
 def log_training_event():
-    cur = g.conn.cursor()
+    
     if request.method == 'POST':
         # Get user input from the form
         training_type = request.form['training_type']
@@ -219,28 +219,23 @@ def log_training_event():
         event_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 
         # Insert the new training event into the training_event table
-        cur.execute("INSERT INTO training_event (training_type, date, start_time, finish_time, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start_time, finish_time, miles, event_id))
+        
+
+        g.conn.execute("INSERT INTO training_event (training_type, date, start_time, finish_time, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start_time, finish_time, miles, event_id))
         conn.commit()
 
         # Insert the new log entry into the log table
-        cur.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
+        g.conn.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
         conn.commit()
         cursor.close()
+        conn.close()
         return "Training event added successfully!"
 
     else:
         cursor.close()
-        return '''
-        <form method="post">
-            Training type: <input type="text" name="training_type"><br>
-            Date: <input type="date" name="date"><br>
-            Start time: <input type="time" name="start_time"><br>
-            Finish time: <input type="time" name="finish_time"><br>
-            Miles: <input type="number" step="0.01" name="miles"><br>
-            Runner ID: <input type="text" name="runner_id"><br>
-            <input type="submit" value="Submit">
-        </form>
-        '''
+        conn.close()
+        return  render_template('log_training_event.html')
+
 def index():
 
 # Establish a connection to the database
