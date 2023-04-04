@@ -177,7 +177,7 @@ def index():
 @app.route('/another')
 def another():
     print(request.args)
-    select_query = "SELECT program_name, start_date FROM training_program"
+    select_query = "SELECT * FROM training_program;"
     cursor = g.conn.execute(text(select_query))
     names = []
     for result in cursor:
