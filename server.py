@@ -15,8 +15,12 @@ from sqlalchemy import *
 from sqlalchemy.pool import NullPool
 from flask import Flask, request, render_template, g, redirect, Response
 import psycopg2
+<<<<<<< HEAD
 import random
 import string
+=======
+from datetime import date
+>>>>>>> 043aa4b2dc5386d8bb367fe0f6b44f8f36b4e384
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
@@ -178,7 +182,7 @@ def index():
 @app.route('/another')
 def another():
     print(request.args)
-    select_query = "SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = 'nyc_marathon' AND reg.completed = 'Y'"
+    select_query = "SELECT * FROM training_program;"
     cursor = g.conn.execute(text(select_query))
     names = []
     for result in cursor:
@@ -255,6 +259,26 @@ def index():
 
 	conn.close()
 	return render_template('index.html', results=results)
+
+
+
+@app.route('/runner_name', methods=['GET'])
+def get_runner_name():
+    runner_id = request.args.get('runner_id')
+    if not runner_id:
+        return "Runner ID not specified.", 400
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT RUNNER_NAME FROM RUNNER WHERE RUNNER_ID=?", (runner_id,))
+    result = cursor.fetchone()
+    if not result:
+        return "Runner not found.", 404
+    runner_name = result[0]
+
+    return f"Runner name: {runner_name}"
+
+
 
 
 
