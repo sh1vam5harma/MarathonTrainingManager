@@ -15,12 +15,9 @@ from sqlalchemy import *
 from sqlalchemy.pool import NullPool
 from flask import Flask, request, render_template, g, redirect, Response
 import psycopg2
-<<<<<<< HEAD
 import random
 import string
-=======
 from datetime import date
->>>>>>> 043aa4b2dc5386d8bb367fe0f6b44f8f36b4e384
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
