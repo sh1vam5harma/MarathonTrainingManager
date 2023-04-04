@@ -232,8 +232,6 @@ def log_training_event():
         return "Training event added successfully!"
 
     else:
-        cursor.close()
-        conn.close()
         return  render_template('log_training_event.html')
 
 def index():
