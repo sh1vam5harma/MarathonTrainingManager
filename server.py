@@ -205,7 +205,7 @@ def add():
 
 @app.route('/log_training_event', methods=['GET', 'POST'])
 def log_training_event():
-    cur = conn.cursor()
+    cur = g.conn.cursor()
     if request.method == 'POST':
         # Get user input from the form
         training_type = request.form['training_type']
