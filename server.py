@@ -15,6 +15,7 @@ from sqlalchemy import *
 from sqlalchemy.pool import NullPool
 from flask import Flask, request, render_template, g, redirect, Response
 import psycopg2
+from datetime import date
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
@@ -176,7 +177,7 @@ def index():
 @app.route('/another')
 def another():
     print(request.args)
-    select_query = "SELECT r.last_name, r.first_name, reg.finish_time -reg.start_time AS elapsed_time FROM runner r JOIN registration reg ON r.runner_id = reg.runner_id JOIN race ra ON ra.race_id = reg.race_id WHERE ra.race_name = 'nyc_marathon' AND reg.completed = 'Y'"
+    select_query = "SELECT program_name, start_date FROM training_program"
     cursor = g.conn.execute(text(select_query))
     names = []
     for result in cursor:
