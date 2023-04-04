@@ -210,8 +210,8 @@ def log_training_event():
         # Get user input from the form
         training_type = request.form['training_type']
         date = request.form['date']
-        start_time = request.form['start_time']
-        finish_time = request.form['finish_time']
+        start = request.form['start_time']
+        finish = request.form['finish_time']
         miles = request.form['miles']
         runner_id = request.form['runner_id']
 
@@ -221,7 +221,7 @@ def log_training_event():
         # Insert the new training event into the training_event table
         
 
-        g.conn.execute(text("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)"), (training_type, date, start_time, finish_time, miles, event_id))
+        g.conn.execute(text("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)"), (training_type, date, start, finish, miles, event_id))
         conn.commit()
 
         # Insert the new log entry into the log table
