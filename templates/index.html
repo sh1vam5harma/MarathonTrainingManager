@@ -33,22 +33,8 @@
       <input type="submit" value="Submit">
     </form>
     <br>
-    <table>
-      <tr>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Elapsed Time</th>
-      </tr>
-      {% for row in results %}
-      <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
-      </tr>
-      {% endfor %}
-    </table>
+ 
     <p><a href="another">Go to Another Page</a></p>
-    <p><a href="refresh">Refresh Page</a></p>
     <p><a href="log_training_event">Log Training Event<a><p>
     <p><a href="runner_name">Find Runner Name<a><p>		    
   </body>
