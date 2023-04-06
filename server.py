@@ -222,13 +222,13 @@ def log_training_event():
         # Insert the new training event into the training_event table
         
         g.conn.execute(text("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)"), (training_type, date, start, finish, miles, event_id))
-        conn.commit()
+        g.conn.commit()
 
         # Insert the new log entry into the log table
         g.conn.execute(text("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)"), (runner_id, event_id))
-        conn.commit()
-        cursor.close()
-        conn.close()
+        g.conn.commit()
+        #cursor.close()
+        #conn.close()
         return "Training event added successfully!"
 
     else:
@@ -236,7 +236,7 @@ def log_training_event():
 
 def index():
 
-# Establish a connection to the database
+# Establish a connection to tihe database
 	conn = psycopg2.connect(DATABASEURI)
 
 # Create a cursor object
