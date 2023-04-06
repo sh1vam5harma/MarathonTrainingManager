@@ -271,7 +271,7 @@ def add_volunteer():
         date_of_birth = request.form.get('date_of_birth')
 
         # Establish connection to database
-        conn = sqlite3.connect(db_path)
+        conn = psycopg2.connect(DATABASEURI)
         cursor = conn.cursor()
 
         # Insert the new volunteer into the database
