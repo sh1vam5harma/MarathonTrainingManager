@@ -260,32 +260,36 @@ def index():
 
 
 @app.route('/runner_name', methods=['GET', 'POST'])
-def add2():
-    # Accessing form inputs from user
-    volunteer_id = request.form['volunteer_id']
-    last_name = request.form['last_name']
-    first_name = request.form['first_name']
-    gender = request.form['gender']
-    email = request.form['email']
-    date_of_birth = request.form['date_of_birth']
+def add_volunteer():
+    if request.method == 'POST':
+        # Accessing form inputs from user
+        volunteer_id = request.form.get('volunteer_id')
+        last_name = request.form.get('last_name')
+        first_name = request.form.get('first_name')
+        gender = request.form.get('gender')
+        email = request.form.get('email')
+        date_of_birth = request.form.get('date_of_birth')
 
-    # Establish connection to database
-   # conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
+        # Establish connection to database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
 
-    # Insert the new volunteer into the database
-    cursor.execute("INSERT INTO VOLUNTEER (VOLUNTEER_ID, LAST_NAME, FIRST_NAME, GENDER, EMAIL, DATE_OF_BIRTH) VALUES (?, ?, ?, ?, ?, ?)",
-                   (volunteer_id, last_name, first_name, gender, email, date_of_birth))
+        # Insert the new volunteer into the database
+        cursor.execute("INSERT INTO VOLUNTEER (VOLUNTEER_ID, LAST_NAME, FIRST_NAME, GENDER, EMAIL, DATE_OF_BIRTH) VALUES (?, ?, ?, ?, ?, ?)",
+                       (volunteer_id, last_name, first_name, gender, email, date_of_birth))
 
-    # Commit the changes to the database
-    conn.commit()
+        # Commit the changes to the database
+        conn.commit()
 
-    # Close the database connection
-    cursor.close()
-    conn.close()
+        # Close the database connection
+        cursor.close()
+        conn.close()
 
-    # Redirect to the homepage
-   # return redirect('/')
+        # Redirect to the homepage
+        return redirect('/')
+    else:
+        return render_template('runner_name.html')
+
 
 
 
