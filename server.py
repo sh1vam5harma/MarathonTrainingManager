@@ -229,12 +229,13 @@ def log_training_event():
         #cursor.execute("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start, finish, miles, event_id))
         #g.conn.commit()
         conn.commit()
+        res.close()
         # Insert the new log entry into the log table
         log_insert_command = """INSERT INTO log(runner_id, event_id) VALUES (runner_id, event_id)"""
         res2 = conn.execute(text(log_insert_command))
         conn.commit()
         #cursor.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
-        
+        res2.close()
         #g.conn.commit()
         #cursor.close()
         #conn.close()
