@@ -260,7 +260,7 @@ def index():
 
 
 @app.route('/runner_name', methods=['POST'])
-def add():
+def add2():
     # Accessing form inputs from user
     volunteer_id = request.form['volunteer_id']
     last_name = request.form['last_name']
