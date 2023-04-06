@@ -218,7 +218,7 @@ def log_training_event():
 
         # Generate a random event_id
         event_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-        training_event = [(training_type1, date1, start1, finish1, miles1, event_id)]
+        #training_event = [(training_type1, date1, start1, finish1, miles1, event_id)]
         # Insert the new training event into the training_event table
         
         g.conn.execute("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start, finish, miles, event_id))
