@@ -218,14 +218,16 @@ def log_training_event():
 
         # Generate a random event_id
         event_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-
+        training_event = [(training_type1, date1, start1, finish1, miles1, event_id)]
         # Insert the new training event into the training_event table
         
-        g.conn.execute(text("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)"), (training_type, date, start, finish, miles, event_id))
+        g.conn.execute("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", training_event)
+
+                # (training_type, date, start, finish, miles, event_id))
         g.conn.commit()
 
         # Insert the new log entry into the log table
-        g.conn.execute(text("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)"), (runner_id, event_id))
+        g.conn.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
         g.conn.commit()
         cursor.close()
         #conn.close()
