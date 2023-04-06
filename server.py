@@ -206,7 +206,7 @@ def add():
 
 @app.route('/log_training_event', methods=['GET', 'POST'])
 def log_training_event():
-    cursor = conn.cursor()
+    
     if request.method == 'POST':
         # Get user input from the form
         training_type = request.form['training_type']
@@ -215,18 +215,27 @@ def log_training_event():
         finish = request.form['finish_time']
         miles = request.form['miles']
         runner_id = request.form['runner_id']
+        #insert_table_command = """INSERT INTO test(name) VALUES ('grace hopper'), ('alan turing'), ('ada lovelace')"""
+	#res = conn.execute(text(insert_table_command))
+	# you need to commit for create, insert, update queries to reflect
+	#conn.commit()
 
         # Generate a random event_id
         event_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
         #training_event = [(training_type1, date1, start1, finish1, miles1, event_id)]
         # Insert the new training event into the training_event table
-        
-        cursor.execute("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start, finish, miles, event_id))
-        g.conn.commit()
-
+        insert_command = """"INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (training_type, date, start, finish, miles, event_id)"""
+        res = conn.execute(text(insert_command))
+        #cursor.execute("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start, finish, miles, event_id))
+        #g.conn.commit()
+        conn.commit()
         # Insert the new log entry into the log table
-        cursor.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
-        g.conn.commit()
+        log_insert_command = """INSERT INTO log(runner_id, event_id) VALUES (runner_id, event_id)"""
+        res2 = conn.execute(text(log_insert_command))
+        conn.commit()
+        #cursor.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
+        
+        #g.conn.commit()
         cursor.close()
         #conn.close()
         return "Training event added successfully!"
