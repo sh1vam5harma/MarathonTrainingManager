@@ -1,13 +1,35 @@
 <html>
 <head>
-	<title>Get Runner Name</title>
+	<title>Volunteer Info Below:</title>
 </head>
 <body>
-	<form action="/runner_name" method="GET">
-		<label for="runner_id">Enter Runner ID:</label>
-		<input type="text" id="runner_id" name="runner_id"><br><br>
-		<input type="submit" value="Submit">
-	</form>
+	<form action="/runner_name" method="POST">
+<!--<form action="/add" method="POST">-->
+  <label for="volunteer_id">Volunteer ID:</label>
+  <input type="text" id="volunteer_id" name="volunteer_id"><br><br>
+
+  <label for="last_name">Last Name:</label>
+  <input type="text" id="last_name" name="last_name"><br><br>
+
+  <label for="first_name">First Name:</label>
+  <input type="text" id="first_name" name="first_name"><br><br>
+
+  <label for="gender">Gender:</label>
+  <select id="gender" name="gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+
+  <label for="date_of_birth">Date of Birth:</label>
+  <input type="date" id="date_of_birth" name="date_of_birth"><br><br>
+
+  <input type="submit" value="Submit">
+</form>
+
 </body>
 </html>
 

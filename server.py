@@ -259,21 +259,38 @@ def index():
 
 
 
-@app.route('/runner_name', methods=['GET'])
-def get_runner_name():
-    runner_id = request.args.get('runner_id')
-    if not runner_id:
-        return "Runner ID not specified.", 400
+@app.route('/runner_name', methods=['GET', 'POST'])
+def add_volunteer():
+    if request.method == 'POST':
+        # Accessing form inputs from user
+        volunteer_id = request.form.get('volunteer_id')
+        last_name = request.form.get('last_name')
+        first_name = request.form.get('first_name')
+        gender = request.form.get('gender')
+        email = request.form.get('email')
+        date_of_birth = request.form.get('date_of_birth')
 
-  #  conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
-    cursor.execute("SELECT RUNNER_NAME FROM RUNNER WHERE RUNNER_ID=?", (runner_id,))
-    result = cursor.fetchone()
-    if not result:
-        return "Runner not found.", 404
-    runner_name = result[0]
+        # Establish connection to database
+        conn = psycopg2.connect(DATABASEURI)
+        cursor = conn.cursor()
 
-    return f"Runner name: {runner_name}"
+        # Insert the new volunteer into the database
+        cursor.execute("INSERT INTO VOLUNTEER (VOLUNTEER_ID, LAST_NAME, FIRST_NAME, GENDER, EMAIL, DATE_OF_BIRTH) VALUES (?, ?, ?, ?, ?, ?)",
+                       (volunteer_id, last_name, first_name, gender, email, date_of_birth))
+
+        # Commit the changes to the database
+        conn.commit()
+
+        # Close the database connection
+        cursor.close()
+        conn.close()
+
+        # Redirect to the homepage
+        return redirect('/')
+    else:
+        return render_template('runner_name.html')
+
+
 
 
 
