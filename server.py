@@ -259,7 +259,7 @@ def index():
 
 
 
-@app.route('/runner_name', methods=['POST'])
+@app.route('/runner_name', methods=['GET', 'POST'])
 def add2():
     # Accessing form inputs from user
     volunteer_id = request.form['volunteer_id']
