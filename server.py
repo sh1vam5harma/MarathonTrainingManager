@@ -204,7 +204,7 @@ def add():
 
 
 
-@app.route('/log_training_event', methods=['GET', 'POST'])
+@app.route('/log_training_event', methods=['POST'])
 def log_training_event():
     
     if request.method == 'POST':
