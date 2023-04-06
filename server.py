@@ -225,20 +225,25 @@ def log_training_event():
         #training_event = [(training_type1, date1, start1, finish1, miles1, event_id)]
         # Insert the new training event into the training_event table
         insert_command = """INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (?, ?, ?, ?, ?, ?), (py_training_type, py_date, py_start, py_finish, py_miles, py_event_id)"""
-        res = g.conn.execute(text(insert_command))
+        #res = g.conn.execute(text(insert_command))
+        g.conn.execute("INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (?, ?, ?, ?, ?, ?)", (py_training_type, py_date, py_start, py_finish, py_miles, py_event_id))
         #cursor.execute("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start, finish, miles, event_id))
         #g.conn.commit()
         g.conn.commit()
-        res.close()
+        #res.close()
+        conn.close()
         # Insert the new log entry into the log table
-        log_insert_command = """INSERT INTO log(runner_id, event_id) VALUES (?, ?), (py_runner_id, py_event_id)"
-        res2 = g.conn.execute(text(log_insert_command))"""
+        log_insert_command = """INSERT INTO log(runner_id, event_id) VALUES (?, ?), (py_runner_id, py_event_id)"""
+        g.conn.execute("INSERT INTO log(runner_id, event_id) VALUES (?, ?)", (py_runner_id, py_event_id))
+        #res2 = g.conn.execute(text(log_insert_command))
+
         g.conn.commit()
         #cursor.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
-        res2.close()
+        
+        #res2.close()
         #g.conn.commit()
         #cursor.close()
-        #conn.close()
+        conn.close()
         return "Training event added successfully!"
 
     else:
