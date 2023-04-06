@@ -227,7 +227,7 @@ def log_training_event():
         # Insert the new log entry into the log table
         g.conn.execute(text("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)"), (runner_id, event_id))
         g.conn.commit()
-        #cursor.close()
+        cursor.close()
         #conn.close()
         return "Training event added successfully!"
 
