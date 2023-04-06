@@ -285,7 +285,7 @@ def add2():
     conn.close()
 
     # Redirect to the homepage
-    return redirect('/')
+   # return redirect('/')
 
 
 
