@@ -224,15 +224,15 @@ def log_training_event():
         event_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
         #training_event = [(training_type1, date1, start1, finish1, miles1, event_id)]
         # Insert the new training event into the training_event table
-        insert_command = """"INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (training_type, date, start, finish, miles, event_id)"""
+        insert_command = """INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (training_type, date, start, finish, miles, event_id)"""
         res = g.conn.execute(text(insert_command))
         #cursor.execute("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start, finish, miles, event_id))
         #g.conn.commit()
         g.conn.commit()
         res.close()
         # Insert the new log entry into the log table
-        log_insert_command = """INSERT INTO log(runner_id, event_id) VALUES (runner_id, event_id)"""
-        res2 = g.conn.execute(text(log_insert_command))
+        log_insert_command = """INSERT INTO log(runner_id, event_id) VALUES (runner_id, event_id)"
+        res2 = g.conn.execute(text(log_insert_command))"""
         g.conn.commit()
         #cursor.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
         res2.close()
