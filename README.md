@@ -2,7 +2,7 @@
 Shivam Sharma ss6454
 Isiah Nagelkerk jn2807
 PostGresSQL account name: ss6454@cs4111-instance1
-URL-     http://35.237.150.3:8111/
+URL-  http://35.237.150.3:8111/
 
 
 We integrated features from Part 1, such as allowing users to find a training program that fits their desired difficulty. 
@@ -11,3 +11,4 @@ Some of the most intriguing database operations are performed on the Log Trainin
 they have completed. This allows users to keep track of the different training that they do, whether it is running, hiking, biking, etc. 
 Another interesting database operation is right on the index.html homepage. 
 By using operations we are able to display the results of one of the marathons from our database. 
+Lastly, volunteers are able to sign up to help during a race which also previously stated in the design plan. 
