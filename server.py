@@ -224,26 +224,27 @@ def log_training_event():
         py_event_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
         #training_event = [(training_type1, date1, start1, finish1, miles1, event_id)]
         # Insert the new training event into the training_event table
-        insert_command = """INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (?, ?, ?, ?, ?, ?), (py_training_type, py_date, py_start, py_finish, py_miles, py_event_id)"""
-        #res = g.conn.execute(text(insert_command))
-        g.conn.execute("INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (?, ?, ?, ?, ?, ?)", (py_training_type, py_date, py_start, py_finish, py_miles, py_event_id))
+        insert_command = "INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (?, ?, ?, ?, ?, ?)"
+        values1 = (py_training_type, py_date, py_start, py_finish, py_miles, py_event_id)
+        res = g.conn.execute(insert_command, values1)
+        #g.conn.execute("INSERT INTO training_event(training_type, date, start, finish, miles, event_id) VALUES (?, ?, ?, ?, ?, ?)", (py_training_type, py_date, py_start, py_finish, py_miles, py_event_id))
         #cursor.execute("INSERT INTO training_event (training_type, date, start, finish, miles, event_id) VALUES (%s, %s, %s, %s, %s, %s)", (training_type, date, start, finish, miles, event_id))
-        #g.conn.commit()
         g.conn.commit()
-        #res.close()
-        conn.close()
+        res.close()
+        #conn.close()
         # Insert the new log entry into the log table
-        log_insert_command = """INSERT INTO log(runner_id, event_id) VALUES (?, ?), (py_runner_id, py_event_id)"""
-        g.conn.execute("INSERT INTO log(runner_id, event_id) VALUES (?, ?)", (py_runner_id, py_event_id))
-        #res2 = g.conn.execute(text(log_insert_command))
+        log_insert_command = "INSERT INTO log(runner_id, event_id) VALUES (?, ?)"
+        values2 =(py_runner_id, py_event_id)
+        #g.conn.execute("INSERT INTO log(runner_id, event_id) VALUES (?, ?)", (py_runner_id, py_event_id))
+        res2 = g.conn.execute(log_insert_command, values2)
 
         g.conn.commit()
         #cursor.execute("INSERT INTO log (runner_id, event_id) VALUES (%s, %s)", (runner_id, event_id))
         
-        #res2.close()
+        res2.close()
         #g.conn.commit()
         #cursor.close()
-        conn.close()
+        #conn.close()
         return "Training event added successfully!"
 
     else:
